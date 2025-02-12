@@ -1,0 +1,14 @@
+{
+  "name": "nearby-doctors",
+  "version": "1.0.0",
+  "description": "Application to find nearby doctors based on current location",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts"
+  },
+  "keywords": ["doctors", "nearby", "location", "postgis"],
+  "author": "",
+  "license": "ISC"
+}
