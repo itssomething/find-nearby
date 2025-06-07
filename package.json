@@ -6,9 +6,27 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts"
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+    "test": "node -r ts-node/register --test test/**/*.ts"
   },
-  "keywords": ["doctors", "nearby", "location", "postgis"],
+  "dependencies": {
+    "cors": "2.8.5",
+    "dotenv": "16.4.7",
+    "express": "4.21.2",
+    "pg": "8.13.1"
+  },
+  "devDependencies": {
+    "nodemon": "3.1.9",
+    "@types/pg": "8.10.2",
+    "ts-node": "10.9.2",
+    "typescript": "5.7.3"
+  },
+  "keywords": [
+    "doctors",
+    "nearby",
+    "location",
+    "postgis"
+  ],
   "author": "",
   "license": "ISC"
 }
