@@ -25,7 +25,7 @@ const getNearbyDoctors = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    const doctors = await findNearbyDoctors(latitude, longitude, radius);
+    const doctors = await findNearbyDoctors(longitude, latitude, radius);
     res.json(doctors);
   } catch (error) {
     console.error('Error in /api/doctors/nearby:', error);

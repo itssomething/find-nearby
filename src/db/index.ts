@@ -11,7 +11,11 @@ const pool = new Pool({
   port: parseInt(process.env.DB_PORT || '5432'),
 });
 
-export const findNearbyDoctors = async (latitude: number, longitude: number, radiusInMeters: number = 5000) => {
+export const findNearbyDoctors = async (
+  longitude: number,
+  latitude: number,
+  radiusInMeters: number = 5000
+) => {
   const query = `
     SELECT
       id,
@@ -24,14 +28,22 @@ export const findNearbyDoctors = async (latitude: number, longitude: number, rad
       email,
       ST_Distance(
         location,
-        ST_SetSRID(ST_MakePoint($1, $2), 4326)::geography
+        ST_SetSRID(
+          // ST_MakePoint expects coordinates in longitude, latitude order
+          ST_MakePoint($1, $2),
+          4326
+        )::geography
       ) as distance
     FROM doctors
-    WHERE ST_DWithin(
-      location,
-      ST_SetSRID(ST_MakePoint($1, $2), 4326)::geography,
-      $3
-    )
+      WHERE ST_DWithin(
+        location,
+        ST_SetSRID(
+          // ST_MakePoint expects coordinates in longitude, latitude order
+          ST_MakePoint($1, $2),
+          4326
+        )::geography,
+        $3
+      )
     ORDER BY distance
   `;
 
